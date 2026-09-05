@@ -135,8 +135,7 @@ export async function getTopPlayers(limit = 20) {
   const [rows] = await db.execute(
     `SELECT c.name, c.level, c.exp, c.money, c.bank, c.employment, c.played_time, a.account as account_name
      FROM characters c JOIN accounts a ON c.account = a.id
-     ORDER BY c.level DESC, c.exp DESC LIMIT ?`,
-    [limit]
+     ORDER BY c.level DESC, c.exp DESC LIMIT ${limit}`
   );
   return rows as Record<string, unknown>[];
 }
