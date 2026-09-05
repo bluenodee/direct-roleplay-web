@@ -29,24 +29,24 @@ export default async function DashboardPage() {
       <Header user={session} />
       <div className="max-w-4xl mx-auto px-6 py-12 page-enter">
         <div className="mb-8">
-          <h1 className="text-2xl font-bold">Welcome, <span className="text-[#4db8e8]">{session.username}</span></h1>
+          <h1 className="text-2xl font-bold">Bem-vindo, <span className="text-[#4db8e8]">{session.username}</span></h1>
           <p className="text-sm text-white/40 mt-1">
-            Rank: <strong>{session.adminRank}</strong> · PV: <strong className="text-[#4db8e8]">{session.points}</strong>
+            Cargo: <strong>{session.adminRank}</strong> · PV: <strong className="text-[#4db8e8]">{session.points}</strong>
           </p>
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8">
-          <StatCard label="Characters" value={characters.length} />
-          <StatCard label="Vehicles" value={charData.reduce((s, c) => s + c.vehicleCount, 0)} color="#6f83ee" />
-          <StatCard label="Total Money" value={formatMoney(totalMoney)} color="#4db8e8" />
-          <StatCard label="Played Time" value={formatPlayedTime(totalPlayed)} color="#34c759" />
+          <StatCard label="Personagens" value={characters.length} />
+          <StatCard label="Veículos" value={charData.reduce((s, c) => s + c.vehicleCount, 0)} color="#6f83ee" />
+          <StatCard label="Dinheiro Total" value={formatMoney(totalMoney)} color="#4db8e8" />
+          <StatCard label="Tempo de Jogo" value={formatPlayedTime(totalPlayed)} color="#34c759" />
         </div>
 
-        <h2 className="text-sm font-semibold text-white/60 mb-3 uppercase tracking-wide">Characters</h2>
+        <h2 className="text-sm font-semibold text-white/60 mb-3 uppercase tracking-wide">Personagens</h2>
         <div className="space-y-3 mb-8">
           {charData.length === 0 ? (
             <div className="bg-black/5 border border-white/5 rounded-xl p-8 text-center text-white/30 text-sm">
-              No characters yet. Join the server to create one!
+              Nenhum personagem ainda. Entre no servidor para criar um!
             </div>
           ) : (
             charData.map(({ char, vehicleCount }) => (
@@ -55,7 +55,7 @@ export default async function DashboardPage() {
                   <div>
                     <div className="font-semibold">{char.name as string}</div>
                     <div className="text-xs text-white/40">
-                      Level {char.level as number} · {getEmploymentName(char.employment as string)} · {formatPlayedTime(char.played_time as number || 0)}
+                      Nível {char.level as number} · {getEmploymentName(char.employment as string)} · {formatPlayedTime(char.played_time as number || 0)}
                     </div>
                   </div>
                   <div className="text-[#4db8e8] font-semibold">{formatMoney((char.money as number || 0) + (char.bank as number || 0))}</div>

@@ -55,15 +55,15 @@ const icons: Record<string, React.ReactNode> = {
 };
 
 const FEATURES = [
-  { icon: 'world', title: 'Open World', desc: 'Explore a living, breathing city with dynamic events and activities.' },
-  { icon: 'briefcase', title: 'Jobs & Careers', desc: 'Choose from multiple jobs including miner, pizza delivery, taxi driver and more.' },
-  { icon: 'car', title: 'Vehicle System', desc: 'Buy, customize and maintain your vehicles with realistic mechanics.' },
-  { icon: 'home', title: 'Housing', desc: 'Purchase properties and make them your own.' },
-  { icon: 'backpack', title: '83+ Items', desc: 'Manage your inventory with a wide variety of items and rarity tiers.' },
-  { icon: 'sword', title: 'Factions', desc: 'Join groups and climb the ranks with your team.' },
-  { icon: 'phone', title: 'Phone & Contacts', desc: 'Stay connected with in-game phone system.' },
-  { icon: 'star', title: 'Leveling System', desc: 'Gain XP, level up and unlock new opportunities.' },
-  { icon: 'shield', title: 'Anti-Cheat', desc: 'Fair play enforced with advanced detection systems.' },
+  { icon: 'world', title: 'Mundo Aberto', desc: 'Explore uma cidade viva e dinâmica com eventos e atividades constantes.' },
+  { icon: 'briefcase', title: 'Empregos e Carreiras', desc: 'Escolha entre múltiplos empregos como minerador, entregador de pizza, taxista e mais.' },
+  { icon: 'car', title: 'Sistema de Veículos', desc: 'Compre, personalize e cuide dos seus veículos com mecânicas realistas.' },
+  { icon: 'home', title: 'Moradias', desc: 'Compre propriedades e faça delas o seu lar.' },
+  { icon: 'backpack', title: '83+ Itens', desc: 'Gerencie seu inventário com uma grande variedade de itens e níveis de raridade.' },
+  { icon: 'sword', title: 'Facções', desc: 'Entre em grupos e suba de rank com a sua equipe.' },
+  { icon: 'phone', title: 'Celular e Contatos', desc: 'Mantenha-se conectado com o sistema de celular do jogo.' },
+  { icon: 'star', title: 'Sistema de Níveis', desc: 'Ganhe XP, suba de nível e desbloqueie novas oportunidades.' },
+  { icon: 'shield', title: 'Anti-Cheat', desc: 'Jogo justo garantido com sistemas avançados de detecção.' },
 ];
 
 export default function FeaturesGrid() {

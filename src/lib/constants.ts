@@ -11,20 +11,20 @@ export const LEVELS: Record<number, number> = {
 };
 
 export const EMPLOYMENTS: Record<string, string> = {
-  Nenhum: 'Unemployed',
-  lixeiro: 'Garbage Collector',
-  cortador_de_grama: 'Mower',
-  pizzaiolo: 'Pizza Delivery',
-  taxista: 'Taxi Driver',
-  eletricista: 'Electrician',
-  montador: 'Automaker',
-  minerador: 'Miner',
+  Nenhum: 'Desempregado',
+  lixeiro: 'Lixeiro',
+  cortador_de_grama: 'Cortador de Grama',
+  pizzaiolo: 'Entregador de Pizza',
+  taxista: 'Taxista',
+  eletricista: 'Eletricista',
+  montador: 'Montador',
+  minerador: 'Minerador',
 };
 
 export const SKIN_COLORS: Record<string, string> = {
-  whi: 'White',
+  whi: 'Branco',
   ara: 'Pardo',
-  bla: 'Black',
+  bla: 'Preto',
 };
 
 export const RARITY_COLORS: Record<number, string> = {
@@ -38,11 +38,11 @@ export const RARITY_COLORS: Record<number, string> = {
 };
 
 export const RARITY_NAMES: Record<number, string> = {
-  1: 'Common',
-  2: 'Uncommon',
-  3: 'Rare',
-  4: 'Epic',
-  5: 'Legendary',
-  6: 'Mythic',
-  7: 'Unique',
+  1: 'Comum',
+  2: 'Incomum',
+  3: 'Raro',
+  4: 'Épico',
+  5: 'Lendário',
+  6: 'Mítico',
+  7: 'Único',
 };

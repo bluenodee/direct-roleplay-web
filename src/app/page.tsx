@@ -14,23 +14,23 @@ export default async function HomePage() {
           <div className="absolute inset-0 bg-gradient-to-b from-[#4db8e8]/5 to-transparent pointer-events-none" />
           <div className="max-w-4xl mx-auto text-center relative">
             <h1 className="text-5xl md:text-6xl font-bold mb-6">
-              Welcome to <span className="text-[#4db8e8]">Direct</span>
+              Bem-vindo ao <span className="text-[#4db8e8]">Direct</span>
             </h1>
             <p className="text-lg text-white/50 mb-10 max-w-2xl mx-auto">
-              A premium Multi Theft Auto roleplay experience. Immerse yourself in a detailed city with dynamic gameplay, factions and a thriving community.
+              Uma experiência premium de roleplay no Multi Theft Auto. Immerja-se em uma cidade detalhada com jogabilidade dinâmica, facções e uma comunidade ativa.
             </p>
             <div className="flex justify-center gap-4">
               {session ? (
                 <a href="/dashboard" className="px-8 py-3 bg-[#4db8e8] text-black font-semibold rounded-lg hover:bg-[#6dc8f0] transition-colors">
-                  DASHBOARD
+                  PAINEL
                 </a>
               ) : (
                 <>
                   <a href="/register" className="px-8 py-3 bg-[#4db8e8] text-black font-semibold rounded-lg hover:bg-[#6dc8f0] transition-colors">
-                    CREATE ACCOUNT
+                    CRIAR CONTA
                   </a>
                   <a href="/login" className="px-8 py-3 border border-white/10 text-white/60 rounded-lg hover:border-white/20 hover:text-white transition-all">
-                    LOGIN
+                    ENTRAR
                   </a>
                 </>
               )}

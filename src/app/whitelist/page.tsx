@@ -28,16 +28,16 @@ export default async function WhitelistPage() {
         <div className="bg-black/20 border border-white/5 rounded-2xl p-8 text-center">
           {status === 'approved' && (
             <div className="bg-green-500/10 border border-green-500/20 rounded-xl px-4 py-3 text-green-400 text-sm">
-              Your whitelist is approved! You can now join the server.
+              Sua whitelist foi aprovada! Você já pode entrar no servidor.
             </div>
           )}
           {status === 'pending' && (
             <div className="bg-yellow-500/10 border border-yellow-500/20 rounded-xl px-4 py-3 text-yellow-400 text-sm">
-              Your whitelist is pending approval. Please wait.
+              Sua whitelist está pendente de aprovação. Por favor, aguarde.
             </div>
           )}
           {status === 'none' && (
-            <p className="text-white/40 text-sm">Enter your 6-digit whitelist token to get approved.</p>
+            <p className="text-white/40 text-sm">Digite seu token de whitelist de 6 dígitos para ser aprovado.</p>
           )}
         </div>
       </div>

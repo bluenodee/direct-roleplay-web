@@ -58,7 +58,7 @@ export default async function ProfilePage({ params }: { params: Promise<{ id: st
             {characters.map(c => (
               <a key={c.id as number} href={`/profile/${c.id}`}
                 className={`px-4 py-2 rounded-xl text-sm border transition-all ${c.id === charId ? 'border-[#4db8e8] text-[#4db8e8] bg-[#4db8e8]/5' : 'border-white/5 text-white/40 hover:border-white/10'}`}>
-                {c.name as string} <span className="text-white/20 ml-1">Lv.{c.level as number}</span>
+                {c.name as string} <span className="text-white/20 ml-1">Nv.{c.level as number}</span>
               </a>
             ))}
           </div>
@@ -72,7 +72,7 @@ export default async function ProfilePage({ params }: { params: Promise<{ id: st
             <div>
               <h1 className="text-xl font-bold">{selectedChar.name as string}</h1>
               <p className="text-sm text-white/40">
-                Level {currentLevel} · {getEmploymentName(selectedChar.employment as string)} · {selectedChar.sex as string === 'male' ? '♂' : '♀'} Age {selectedChar.age as number} · {formatPlayedTime(selectedChar.played_time as number || 0)}
+                Nível {currentLevel} · {getEmploymentName(selectedChar.employment as string)} · {selectedChar.sex as string === 'male' ? '♂' : '♀'} Idade {selectedChar.age as number} · {formatPlayedTime(selectedChar.played_time as number || 0)}
                 {group && <> · <span className="text-[#6f83ee]">{group.group_name as string}</span></>}
               </p>
             </div>
@@ -81,15 +81,15 @@ export default async function ProfilePage({ params }: { params: Promise<{ id: st
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
           <div className="bg-black/5 border border-white/5 rounded-xl p-4">
-            <div className="text-[11px] text-white/30 uppercase mb-1">Cash</div>
+            <div className="text-[11px] text-white/30 uppercase mb-1">Carteira</div>
             <div className="text-lg font-bold text-[#4db8e8]">{formatMoney(selectedChar.money as number || 0)}</div>
           </div>
           <div className="bg-black/5 border border-white/5 rounded-xl p-4">
-            <div className="text-[11px] text-white/30 uppercase mb-1">Bank</div>
+            <div className="text-[11px] text-white/30 uppercase mb-1">Banco</div>
             <div className="text-lg font-bold text-green-400">{formatMoney(selectedChar.bank as number || 0)}</div>
           </div>
           <div className="bg-black/5 border border-white/5 rounded-xl p-4">
-            <div className="text-[11px] text-white/30 uppercase mb-1">Level</div>
+            <div className="text-[11px] text-white/30 uppercase mb-1">Nível</div>
             <div className="text-lg font-bold">{currentLevel}</div>
             <div className="h-1.5 bg-white/5 rounded-full mt-2 overflow-hidden">
               <div className="h-full bg-[#4db8e8] rounded-full" style={{ width: `${xpProgress}%` }} />
@@ -97,37 +97,37 @@ export default async function ProfilePage({ params }: { params: Promise<{ id: st
             <div className="text-[10px] text-white/20 mt-1">{currentExp.toLocaleString()} / {nextLevelExp.toLocaleString()} XP</div>
           </div>
           <div className="bg-black/5 border border-white/5 rounded-xl p-4">
-            <div className="text-[11px] text-white/30 uppercase mb-1">Health</div>
+            <div className="text-[11px] text-white/30 uppercase mb-1">Vida</div>
             <div className="text-lg font-bold text-red-400">{selectedChar.health as number}%</div>
           </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
           <div className="bg-black/5 border border-white/5 rounded-xl p-5">
-            <h3 className="text-sm font-semibold mb-3">Character Info</h3>
+            <h3 className="text-sm font-semibold mb-3">Informações do Personagem</h3>
             <div className="space-y-2 text-sm">
-              <div className="flex justify-between"><span className="text-white/40">Hometown</span><span>{selectedChar.hometown as string || 'Los Santos'}</span></div>
-              <div className="flex justify-between"><span className="text-white/40">Phone</span><span>{selectedChar.phone_number as string || 'N/A'}</span></div>
-              <div className="flex justify-between"><span className="text-white/40">Job</span><span>{getEmploymentName(selectedChar.employment as string)}</span></div>
-              <div className="flex justify-between"><span className="text-white/40">Skin</span><span>{getSkinColorName(selectedChar.color as string)}</span></div>
+              <div className="flex justify-between"><span className="text-white/40">Cidade natal</span><span>{selectedChar.hometown as string || 'Los Santos'}</span></div>
+              <div className="flex justify-between"><span className="text-white/40">Telefone</span><span>{selectedChar.phone_number as string || 'N/A'}</span></div>
+              <div className="flex justify-between"><span className="text-white/40">Emprego</span><span>{getEmploymentName(selectedChar.employment as string)}</span></div>
+              <div className="flex justify-between"><span className="text-white/40">Pele</span><span>{getSkinColorName(selectedChar.color as string)}</span></div>
               <div className="flex justify-between"><span className="text-white/40">Slots</span><span>{maxSlots}</span></div>
             </div>
           </div>
           <div className="bg-black/5 border border-white/5 rounded-xl p-5">
-            <h3 className="text-sm font-semibold mb-3">Financial Overview</h3>
+            <h3 className="text-sm font-semibold mb-3">Visão Financeira</h3>
             <div className="space-y-2 text-sm">
-              <div className="flex justify-between"><span className="text-white/40">Cash</span><span className="text-[#4db8e8]">{formatMoney(selectedChar.money as number || 0)}</span></div>
-              <div className="flex justify-between"><span className="text-white/40">Bank</span><span className="text-green-400">{formatMoney(selectedChar.bank as number || 0)}</span></div>
-              <div className="flex justify-between"><span className="text-white/40">Net Worth</span><span className="text-[#4db8e8]">{formatMoney((selectedChar.money as number || 0) + (selectedChar.bank as number || 0))}</span></div>
-              <div className="flex justify-between"><span className="text-white/40">Vehicles</span><span>{vehicles.length}</span></div>
-              {group && <div className="flex justify-between"><span className="text-white/40">Group</span><span>{group.group_name as string}</span></div>}
+              <div className="flex justify-between"><span className="text-white/40">Carteira</span><span className="text-[#4db8e8]">{formatMoney(selectedChar.money as number || 0)}</span></div>
+              <div className="flex justify-between"><span className="text-white/40">Banco</span><span className="text-green-400">{formatMoney(selectedChar.bank as number || 0)}</span></div>
+              <div className="flex justify-between"><span className="text-white/40">Patrimônio</span><span className="text-[#4db8e8]">{formatMoney((selectedChar.money as number || 0) + (selectedChar.bank as number || 0))}</span></div>
+              <div className="flex justify-between"><span className="text-white/40">Veículos</span><span>{vehicles.length}</span></div>
+              {group && <div className="flex justify-between"><span className="text-white/40">Grupo</span><span>{group.group_name as string}</span></div>}
             </div>
           </div>
         </div>
 
         {advantages.length > 0 && (
           <div className="bg-black/5 border border-white/5 rounded-xl p-5 mb-6">
-            <h3 className="text-sm font-semibold mb-3">Premium Advantages</h3>
+            <h3 className="text-sm font-semibold mb-3">Vantagens Premium</h3>
             <div className="flex flex-wrap gap-2">
               {advantages.map((adv, i) => (
                 <span key={i} className="px-3 py-1 bg-[#4db8e8]/10 border border-[#4db8e8]/20 rounded-full text-xs text-[#4db8e8]">
@@ -139,7 +139,7 @@ export default async function ProfilePage({ params }: { params: Promise<{ id: st
         )}
 
         <h2 className="text-sm font-semibold text-white/60 mb-3 uppercase tracking-wide">
-          Inventory ({(items as Record<string, unknown>[]).length} / {maxSlots})
+          Inventário ({(items as Record<string, unknown>[]).length} / {maxSlots})
         </h2>
         <div className="grid grid-cols-8 gap-1 mb-8">
           {Array.from({ length: maxSlots }, (_, s) => {
@@ -170,14 +170,14 @@ export default async function ProfilePage({ params }: { params: Promise<{ id: st
         {vehicles.length > 0 && (
           <>
             <h2 className="text-sm font-semibold text-white/60 mb-3 uppercase tracking-wide">
-              Vehicles ({vehicles.length})
+              Veículos ({vehicles.length})
             </h2>
             <div className="space-y-3">
               {vehicles.map((v) => (
                 <div key={v.id as number} className="bg-black/5 border border-white/5 rounded-xl p-4 flex items-center justify-between">
                   <div>
                     <div className="font-semibold text-sm">{v.model as string}</div>
-                    <div className="text-xs text-white/40">Fuel: {v.fuel as number}% · Health: {Math.round((v.health as number || 1000) / 10)}% · KM: {(v.kilometraggio as number || 0).toLocaleString()}</div>
+                    <div className="text-xs text-white/40">Combustível: {v.fuel as number}% · Vida: {Math.round((v.health as number || 1000) / 10)}% · KM: {(v.kilometraggio as number || 0).toLocaleString()}</div>
                   </div>
                   <div className="text-xs text-white/30 font-mono">{v.plate as string}</div>
                 </div>
@@ -188,7 +188,7 @@ export default async function ProfilePage({ params }: { params: Promise<{ id: st
 
         {ban && (
           <div className="mt-6 bg-red-500/10 border border-red-500/20 rounded-xl p-4 text-center">
-            <span className="text-red-400 text-sm font-semibold">This character is banned</span>
+            <span className="text-red-400 text-sm font-semibold">Este personagem está banido</span>
           </div>
         )}
       </div>

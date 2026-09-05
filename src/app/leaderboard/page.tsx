@@ -11,17 +11,17 @@ export default async function LeaderboardPage() {
     <>
       <Header user={session} />
       <div className="max-w-4xl mx-auto px-6 py-12 page-enter">
-        <h1 className="text-2xl font-bold mb-6">Leaderboard</h1>
+        <h1 className="text-2xl font-bold mb-6">Ranking</h1>
         <div className="bg-black/5 border border-white/5 rounded-xl overflow-hidden">
           <table className="w-full text-sm">
             <thead>
               <tr className="border-b border-white/5 text-white/40 text-xs uppercase">
                 <th className="text-left px-4 py-3">#</th>
-                <th className="text-left px-4 py-3">Player</th>
-                <th className="text-left px-4 py-3">Level</th>
-                <th className="text-left px-4 py-3 hidden md:table-cell">Job</th>
-                <th className="text-left px-4 py-3 hidden md:table-cell">Money</th>
-                <th className="text-left px-4 py-3 hidden lg:table-cell">Played</th>
+                <th className="text-left px-4 py-3">Jogador</th>
+                <th className="text-left px-4 py-3">Nível</th>
+                <th className="text-left px-4 py-3 hidden md:table-cell">Emprego</th>
+                <th className="text-left px-4 py-3 hidden md:table-cell">Dinheiro</th>
+                <th className="text-left px-4 py-3 hidden lg:table-cell">Jogado</th>
               </tr>
             </thead>
             <tbody>
@@ -43,7 +43,7 @@ export default async function LeaderboardPage() {
                 </tr>
               ))}
               {players.length === 0 && (
-                <tr><td colSpan={6} className="text-center py-8 text-white/30">No players found</td></tr>
+                <tr><td colSpan={6} className="text-center py-8 text-white/30">Nenhum jogador encontrado</td></tr>
               )}
             </tbody>
           </table>

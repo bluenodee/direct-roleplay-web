@@ -15,31 +15,31 @@ export function formatPlayedTime(seconds: number): string {
 }
 
 export function timeAgo(timestamp: number): string {
-  if (!timestamp) return 'never';
+  if (!timestamp) return 'nunca';
   const now = Math.floor(Date.now() / 1000);
   const diff = now - timestamp;
-  if (diff < 60) return 'just now';
-  if (diff < 3600) return `${Math.floor(diff / 60)}m ago`;
-  if (diff < 86400) return `${Math.floor(diff / 3600)}h ago`;
-  if (diff < 604800) return `${Math.floor(diff / 86400)}d ago`;
-  return new Date(timestamp * 1000).toLocaleDateString('en-US');
+  if (diff < 60) return 'agora';
+  if (diff < 3600) return `${Math.floor(diff / 60)}m atrás`;
+  if (diff < 86400) return `${Math.floor(diff / 3600)}h atrás`;
+  if (diff < 604800) return `${Math.floor(diff / 86400)}d atrás`;
+  return new Date(timestamp * 1000).toLocaleDateString('pt-BR');
 }
 
 export function getEmploymentName(key: string): string {
   const map: Record<string, string> = {
-    Nenhum: 'Unemployed',
-    lixeiro: 'Garbage Collector',
-    cortador_de_grama: 'Mower',
-    pizzaiolo: 'Pizza Delivery',
-    taxista: 'Taxi Driver',
-    eletricista: 'Electrician',
-    montador: 'Automaker',
-    minerador: 'Miner',
+    Nenhum: 'Desempregado',
+    lixeiro: 'Lixeiro',
+    cortador_de_grama: 'Cortador de Grama',
+    pizzaiolo: 'Entregador de Pizza',
+    taxista: 'Taxista',
+    eletricista: 'Eletricista',
+    montador: 'Montador',
+    minerador: 'Minerador',
   };
   return map[key] || key;
 }
 
 export function getSkinColorName(color: string): string {
-  const map: Record<string, string> = { whi: 'White', ara: 'Pardo', bla: 'Black' };
+  const map: Record<string, string> = { whi: 'Branco', ara: 'Pardo', bla: 'Preto' };
   return map[color] || color;
 }
