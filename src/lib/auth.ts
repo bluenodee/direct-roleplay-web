@@ -74,15 +74,20 @@ export async function loginUser(username: string, password: string) {
   return session;
 }
 
-export async function registerUser(username: string, email: string, password: string) {
+export async function registerUser(username: string, email: string, password: string, ip: string) {
   const [existing] = await db.execute('SELECT id FROM accounts WHERE account = ?', [username]);
   if ((existing as Record<string, unknown>[]).length > 0) {
-    return { error: 'Username already taken' };
+    return { error: 'Este nome de usuário já está em uso' };
   }
 
   const [existingEmail] = await db.execute('SELECT id FROM accounts WHERE email = ?', [email]);
   if ((existingEmail as Record<string, unknown>[]).length > 0) {
-    return { error: 'Email already registered' };
+    return { error: 'Este e-mail já está registrado' };
+  }
+
+  const [existingIp] = await db.execute('SELECT id FROM accounts WHERE registered_ip = ?', [ip]);
+  if ((existingIp as Record<string, unknown>[]).length > 0) {
+    return { error: 'Já existe uma conta registrada com este IP' };
   }
 
   const hashedPassword = await bcrypt.hash(password, 10);
@@ -91,9 +96,9 @@ export async function registerUser(username: string, email: string, password: st
     .join('');
 
   await db.execute(
-    `INSERT INTO accounts (account, password, token, email, whitelist, discord_id, admin_rank, points, avatar, connected)
-     VALUES (?, ?, ?, ?, 1, '100000000000000000', 'User', 0, 'default.png', 0)`,
-    [username, hashedPassword, token, email]
+    `INSERT INTO accounts (account, password, token, email, whitelist, discord_id, admin_rank, points, avatar, connected, registered_ip)
+     VALUES (?, ?, ?, ?, 1, '100000000000000000', 'User', 0, 'default.png', 0, ?)`,
+    [username, hashedPassword, token, email, ip]
   );
 
   return { success: true };
