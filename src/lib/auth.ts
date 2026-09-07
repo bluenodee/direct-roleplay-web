@@ -1,6 +1,6 @@
 import { SignJWT, jwtVerify } from 'jose';
 import { cookies } from 'next/headers';
-import crypto from 'crypto';
+import bcrypt from 'bcryptjs';
 import db from './db';
 
 const SECRET = new TextEncoder().encode(process.env.JWT_SECRET || 'fallback-secret-key');
@@ -54,7 +54,7 @@ export async function loginUser(username: string, password: string) {
   const user = (rows as Record<string, unknown>[])[0] as Record<string, unknown> | undefined;
   if (!user) return null;
 
-  const valid = crypto.createHash('md5').update(password).digest('hex') === (user.password as string);
+  const valid = await bcrypt.compare(password, (user.password as string).replace('$2y$', '$2b$'));
   if (!valid) return null;
 
   const now = Math.floor(Date.now() / 1000);
@@ -90,7 +90,8 @@ export async function registerUser(username: string, email: string, password: st
     return { error: 'Já existe uma conta registrada com este IP' };
   }
 
-  const hashedPassword = crypto.createHash('md5').update(password).digest('hex');
+  const rawHash = await bcrypt.hash(password, 10);
+  const hashedPassword = rawHash.replace('$2b$', '$2y$');
   const token = Array.from(crypto.getRandomValues(new Uint8Array(16)))
     .map((b) => b.toString(16).padStart(2, '0'))
     .join('');
