@@ -85,22 +85,31 @@ export async function registerUser(username: string, email: string, password: st
     return { error: 'Este e-mail já está registrado' };
   }
 
-  const [existingIp] = await db.execute('SELECT id FROM accounts WHERE registered_ip = ?', [ip]);
-  if ((existingIp as Record<string, unknown>[]).length > 0) {
-    return { error: 'Já existe uma conta registrada com este IP' };
-  }
-
   const rawHash = await bcrypt.hash(password, 10);
   const hashedPassword = rawHash.replace('$2b$', '$2y$');
   const token = Array.from(crypto.getRandomValues(new Uint8Array(16)))
     .map((b) => b.toString(16).padStart(2, '0'))
     .join('');
 
-  await db.execute(
-    `INSERT INTO accounts (account, password, token, email, whitelist, discord_id, admin_rank, points, avatar, connected, registered_ip)
-     VALUES (?, ?, ?, ?, 1, '100000000000000000', 'User', 0, 'default.png', 0, ?)`,
-    [username, hashedPassword, token, email, ip]
-  );
+  try {
+    await db.execute(
+      `INSERT INTO accounts (account, password, token, email, whitelist, discord_id, admin_rank, points, avatar, connected)
+       VALUES (?, ?, ?, ?, 1, '100000000000000000', 'User', 0, 'default.png', 0)`,
+      [username, hashedPassword, token, email]
+    );
+  } catch (err: unknown) {
+    const msg = err instanceof Error ? err.message : String(err);
+    if (msg.includes('registered_ip')) {
+      await db.execute('ALTER TABLE accounts ADD COLUMN registered_ip VARCHAR(45) DEFAULT NULL');
+      await db.execute(
+        `INSERT INTO accounts (account, password, token, email, whitelist, discord_id, admin_rank, points, avatar, connected, registered_ip)
+         VALUES (?, ?, ?, ?, 1, '100000000000000000', 'User', 0, 'default.png', 0, ?)`,
+        [username, hashedPassword, token, email, ip]
+      );
+    } else {
+      throw err;
+    }
+  }
 
   return { success: true };
 }
